@@ -1,4 +1,4 @@
-Required INTERFACE (\S+)
+Value Required INTERFACE (\S+)
 Value INTERFACE_ZONE (\w+)
 Value LINK_STATUS (\w+)
 Value PROTOCOL_STATUS (.*)
@@ -24,13 +24,13 @@ Value FIVEMIN_OUT_RATE (\d+)
 Value FIVEMIN_DROP_RATE (\d+)
 
 Start
-  ^Interface ${INTERFACE} ${INTERFACE_ZONE}, is ${LINK_STATUS}.*protocol is ${PROTOCOL_STATUS}
+  ^.*Interface ${INTERFACE} "${INTERFACE_ZONE}", is ${LINK_STATUS}.*protocol is ${PROTOCOL_STATUS}
   ^\s+Hardware is ${HARDWARE_TYPE} -> Continue
-  ^*BW ${BANDWIDTH}.*DLY ${DELAY}
-  ^\s+${DUPLEX} *\,\s+*(${SPEED}.).*
-  ^\sDescription: ${DESCRIPTION}
-  ^\sMAC address ${ADDRESS}.*MTU ${MTU}
-  ^\sIP Address ${IP_ADDRESS}*subnet mask ${NET_MASK}
+  ^.*BW ${BANDWIDTH}.*DLY ${DELAY}
+  ^.*\(${DUPLEX}.*Auto-Speed\(${SPEED}\)
+  ^.*Description: ${DESCRIPTION}
+  ^.*MAC address ${ADDRESS}.*MTU ${MTU}
+  ^.*IP address ${IP_ADDRESS}, .*subnet mask ${NET_MASK}
   ^.*1 minute input rate ${ONEMIN_IN_PPS} pkts/sec,\s+${ONEMIN_IN_RATE} bytes/sec
   ^.*1 minute output rate ${ONEMIN_OUT_PPS} pkts/sec,\s+${ONEMIN_OUT_RATE} bytes/sec
   ^.*1 minute drop rate, ${ONEMIN_DROP_RATE}
